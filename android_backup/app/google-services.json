@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "345069564615",
+    "project_id": "comidapp-cd4a2",
+    "storage_bucket": "comidapp-cd4a2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345069564615:android:8899adf6725806e77f04e2",
+        "android_client_info": {
+          "package_name": "com.example.c"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgz09FvArN8ZTeCFMhK4I2dX-rB5covWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

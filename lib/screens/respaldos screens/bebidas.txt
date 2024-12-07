@@ -1,0 +1,164 @@
+import 'package:cunadelsabor/screens/screens.dart';
+import 'package:flutter/material.dart';
+
+class Homescreen extends StatelessWidget {
+  const Homescreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'La Cuna del Sabor',
+      home: DefaultTabController(
+        length: 2,
+        child: MyHomePage(),
+      ),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  // List of icons for each button
+  final List<IconData> icons = [
+    Icons.fastfood, // Icon for Platillos
+    Icons.cake, // Icon for Postres
+    Icons.local_dining, // Icon for Entradas
+    Icons.local_bar, // Icon for Bebidas
+    Icons.event, // Icon for Reservas
+  ];
+
+  // List of titles for each button
+  final List<String> titles = [
+    'Platillos',
+    'Postres',
+    'Entradas',
+    'Bebidas',
+    'Reservas',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: AppBar(
+        title: const Text(
+          'ComidApp',
+          style: TextStyle(
+              color: Colors.white), // Cambia el color de la fuente a blanco
+        ),
+        backgroundColor: const Color(0xFF7d1a49),
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () {
+            _scaffoldKey.currentState?.openDrawer();
+          },
+        ),
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: const Color(0xFFdecfea),
+          child: ListView(
+            children: [
+              ListTile(
+                title: const Text('Acerca de'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Aboutscreen()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Terminos y condiciones'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Termcondscreen()),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: Center(
+        child: GridView.count(
+          crossAxisCount: 2, // Number of columns
+          padding: EdgeInsets.all(16.0),
+          children: List.generate(5, (index) {
+            return GestureDetector(
+              onTap: () {
+                // Navegación directa según el índice
+                switch (index) {
+                  case 0:
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Platillosscreen()),
+                    );
+                    break;
+                  case 1:
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Postresscreen()),
+                    );
+                    break;
+                  case 2:
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Entradasscreen()),
+                    );
+                    break;
+                  case 3:
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Bebidasscreen()),
+                    );
+                    break;
+                  case 4:
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ReservasScreen()),
+                    );
+                    break;
+                }
+              },
+              child: Container(
+                margin: EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  color: Colors.yellow,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      icons[index], // Use the icon from the list
+                      size: 50,
+                      color: Colors.black,
+                    ),
+                    SizedBox(height: 8.0), // Space between icon and text
+                    Text(
+                      titles[index], // Use the title from the list
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }),
+        ),
+      ),
+    );
+  }
+}
